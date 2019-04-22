@@ -93,12 +93,16 @@ public class EDS {
             }
             
            
-            
+        } catch (java.net.ConnectException  e) {  
+            return "CR";
         } catch (Exception e) {
+            e.printStackTrace();
             throw new RuntimeException("Exception while calling URL:" + myURL, e);
         } finally {
             // Release the connection.
-            in.close();
+            if (in != null){
+                in.close();
+            }
         } 
 
         return sb.toString();
